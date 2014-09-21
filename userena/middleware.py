@@ -1,7 +1,12 @@
 from django.utils import translation
 from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
-from django.contrib.auth.models import SiteProfileNotAvailable
+
+try:
+    from django.contrib.auth.models import SiteProfileNotAvailable
+except ImportError:
+    class SiteProfileNotAvailable(Exception):
+        pass
 
 from userena import settings as userena_settings
 

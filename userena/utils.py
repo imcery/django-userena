@@ -1,6 +1,11 @@
 from django.conf import settings
-from django.contrib.auth.models import SiteProfileNotAvailable
 from django.db.models import get_model
+
+try:
+    from django.contrib.auth.models import SiteProfileNotAvailable
+except ImportError:
+    class SiteProfileNotAvailable(Exception):
+        pass
 
 try:
     from hashlib import sha1 as sha_constructor, md5 as md5_constructor
